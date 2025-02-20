@@ -30,10 +30,6 @@ public class MainActivity extends AppCompatActivity {
         boolean isFirstTime = sharedPreferences.getBoolean("isFirstTime", true);  // Default is true
 
         if (isFirstTime) {
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("isFirstTime", false);
-            editor.apply();
-
             Intent landingIntent = new Intent(MainActivity.this, LandingActivity.class);
             startActivity(landingIntent);
             finish();  // Prevent user from returning to this activity

@@ -41,7 +41,8 @@
             android:layout_height="wrap_content"
             android:text="Host and Discover Rooms and Apartments with ease, without the broker hassle"
             app:layout_constraintTop_toBottomOf="@id/company_name"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textColor="#4F4F4F"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"

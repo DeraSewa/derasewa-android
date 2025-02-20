@@ -16,9 +16,6 @@
             android:name=".SignupActivity"
             android:exported="false" />
         <activity
-            android:name=".Signup"
-            android:exported="false" />
-        <activity
             android:name=".LandingActivity"
             android:exported="false" />
         <activity

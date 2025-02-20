@@ -2,6 +2,7 @@
     <string name="app_name">DeraSewa</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="forgot_password">Forgot Password?</string>
-    <string name="signup">Signup</string>
+    <string name="forgot_password"><u>Forgot Password?</u></string>
+    <string name="signup"><u>Signup</u></string>
+    <string name="login"><u>Login</u></string>
 </resources>

@@ -33,12 +33,23 @@
             android:textSize="30sp" />
 
         <TextView
+            android:id="@+id/server_response"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:fontFamily="@font/poppins_bold"
+            android:background="@drawable/server_response"
+            android:layout_marginTop="20dp"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/login_text" />
+
+        <TextView
             android:id="@+id/email_address_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Email Address"
-            app:layout_constraintTop_toBottomOf="@id/login_text" />
+            app:layout_constraintTop_toBottomOf="@id/server_response" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/email_input"
@@ -69,9 +80,10 @@
             android:id="@+id/forgot_password_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             android:text="@string/forgot_password"
-            android:textAlignment="center"
+            android:textAlignment="textEnd"
+            android:textStyle="bold"
             app:layout_constraintTop_toBottomOf="@id/password_input" />
 
         <com.google.android.material.button.MaterialButton
@@ -83,6 +95,56 @@
             android:text="LOGIN"
             app:layout_constraintTop_toBottomOf="@id/forgot_password_link" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/or_wrapper"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/login_button"
+            android:layout_marginTop="10dp"
+            app:flow_horizontalAlign="center">
+
+            <View
+                android:id="@+id/right_line"
+                android:layout_width="70dp"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/or_text"
+                />
+
+            <TextView
+                android:id="@+id/or_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Or Continue with"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"/>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="1dp"
+                android:background="@color/black"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/or_text" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/continue_with_google_button"
+            style="@style/secondaryButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Continue with Google"
+            android:drawableLeft="@drawable/google_logo"
+            android:drawablePadding="50dp"
+            app:layout_constraintTop_toBottomOf="@id/or_wrapper" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -90,7 +152,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/login_button">
+            app:layout_constraintTop_toBottomOf="@id/continue_with_google_button">
 
             <TextView
                 android:id="@+id/do_not_have_account_text"
@@ -101,11 +163,12 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/signup_text"
+                android:id="@+id/signup_link"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="@string/signup"
+                android:textStyle="bold"
                 app:layout_constraintStart_toEndOf="@id/do_not_have_account_text"
                 app:layout_constraintTop_toTopOf="@id/do_not_have_account_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>

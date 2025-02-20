@@ -63,7 +63,8 @@ public class LoginActivity extends AppCompatActivity {
 
         // Build request
         Request request = new Request.Builder()
-                .url(BASE_URL + "/api/login") // Update with your actual login endpoint
+                .url(BuildConfig.SERVER_IP+":"+ BuildConfig.SERVER_PORT + "/login")
+                .header("x-api-key", BuildConfig.API_KEY)
                 .post(body)
                 .build();
 

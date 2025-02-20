@@ -27,8 +27,18 @@ public class MainActivity extends AppCompatActivity {
         // Check login status before initializing UI
         SharedPreferences sharedPreferences = getSharedPreferences("user_preferences", MODE_PRIVATE);
         boolean isLoggedIn = sharedPreferences.getBoolean("isLoggedIn", false);  // Default is false
+        boolean isFirstTime = sharedPreferences.getBoolean("isFirstTime", true);  // Default is true
 
-        if (!isLoggedIn) {
+        if (isFirstTime) {
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putBoolean("isFirstTime", false);
+            editor.apply();
+
+            Intent landingIntent = new Intent(MainActivity.this, LandingActivity.class);
+            startActivity(landingIntent);
+            finish();  // Prevent user from returning to this activity
+            return;
+        }else if(!isLoggedIn){
             // User is not logged in; redirect to LoginActivity
             Intent loginIntent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(loginIntent);

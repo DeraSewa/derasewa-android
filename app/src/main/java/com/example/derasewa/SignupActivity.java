@@ -1,7 +1,6 @@
 package com.example.derasewa;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
@@ -40,6 +39,7 @@ public class SignupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_signup);
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -48,22 +48,29 @@ public class SignupActivity extends AppCompatActivity {
 
         TextView loginLink = findViewById(R.id.login_link);
         MaterialButton signupButton = findViewById(R.id.signup_button);
+        CheckBox referralCheckBox = findViewById(R.id.referral_checkbox);
+        TextInputEditText referralInput = findViewById(R.id.referral_input);
+        serverResponse = findViewById(R.id.server_response);
 
-        loginLink.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+        // ✅ Show or hide referral input based on checkbox state
+        referralCheckBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked) {
+                referralInput.setVisibility(View.VISIBLE); // Show referral input
+            } else {
+                referralInput.setVisibility(View.GONE); // Hide referral input
             }
+        });
+
+        loginLink.setOnClickListener(v -> {
+            Intent intent = new Intent(SignupActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
         });
 
         signupButton.setOnClickListener(v -> {
             TextInputEditText fullNameInput = findViewById(R.id.full_name_input);
             TextInputEditText emailInput = findViewById(R.id.email_input);
             TextInputEditText passwordInput = findViewById(R.id.password_input);
-            CheckBox referralCheckBox = findViewById(R.id.referral_checkbox);
-            TextInputEditText referralInput = findViewById(R.id.referral_input);
 
             String fullNameValue = fullNameInput.getText().toString();
             String emailValue = emailInput.getText().toString();
@@ -71,11 +78,11 @@ public class SignupActivity extends AppCompatActivity {
             Boolean usingReferral = referralCheckBox.isChecked();
             String referralValue = referralInput.getText().toString();
 
-            signUpRequest(fullNameValue, emailValue, passwordValue, usingReferral, referralValue);
+            signupRequest(fullNameValue, emailValue, passwordValue, usingReferral, referralValue);
         });
     }
 
-    private void signUpRequest(String fullName, String email, String password, Boolean usingReferralCode, String referralCode){
+    private void signupRequest(String fullName, String email, String password, Boolean usingReferralCode, String referralCode){
         JsonObject jsonBody = new JsonObject();
         jsonBody.addProperty("fullName", fullName);
         jsonBody.addProperty("email", email);
@@ -83,10 +90,8 @@ public class SignupActivity extends AppCompatActivity {
         jsonBody.addProperty("usingReferralCode", usingReferralCode);
         jsonBody.addProperty("referralCode", referralCode);
 
-        // Create request body
         RequestBody body = RequestBody.create(jsonBody.toString(), MediaType.get("application/json; charset=utf-8"));
 
-        // Build request
         Request request = new Request.Builder()
                 .url("http://"+ BuildConfig.SERVER_IP + ":" + BuildConfig.SERVER_PORT + "/validate-account")
                 .header("x-api-key", BuildConfig.API_KEY)
@@ -111,14 +116,17 @@ public class SignupActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     if ("success".equals(type)) {
-                        // Show success message as Toast
                         Toast.makeText(SignupActivity.this, message, Toast.LENGTH_SHORT).show();
 
-                        Intent intent = new Intent(SignupActivity.this, OtpVerification.class);
+                        Intent intent = new Intent(SignupActivity.this, OtpVerificationActivity.class);
+                        intent.putExtra("type", "register-account");
+                        intent.putExtra("fullName", fullName);
+                        intent.putExtra("email", email);
+                        intent.putExtra("password", password);
+                        intent.putExtra("usingReferralCode", usingReferralCode);
+                        intent.putExtra("referralCode", referralCode);
                         startActivity(intent);
-                        finish();
                     } else {
-                        // If login failed, display message
                         serverResponse.setText(message);
                         serverResponse.setVisibility(View.VISIBLE);
                     }

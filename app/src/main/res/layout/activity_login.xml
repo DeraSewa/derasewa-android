@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/poppins_semi_bold"
             android:background="@drawable/server_response"
             android:layout_marginTop="20dp"
             android:drawableLeft="@drawable/alert"
@@ -60,6 +60,7 @@
                 android:id="@+id/email_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -91,7 +92,7 @@
             android:layout_marginTop="10dp"
             android:text="@string/forgot_password"
             android:textAlignment="textEnd"
-            android:textStyle="bold"
+            style="@style/link"
             app:layout_constraintTop_toBottomOf="@id/password_input_layout" />
 
         <com.google.android.material.button.MaterialButton
@@ -180,9 +181,7 @@
                 android:id="@+id/do_not_have_account_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Don't have an account?"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:text="Don't have an account?" />
 
             <TextView
                 android:id="@+id/signup_link"
@@ -190,9 +189,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="@string/signup"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/do_not_have_account_text"
-                app:layout_constraintTop_toTopOf="@id/do_not_have_account_text" />
+                style="@style/link"
+                app:layout_constraintStart_toEndOf="@id/do_not_have_account_text" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

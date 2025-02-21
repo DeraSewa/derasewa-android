@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="15dp"
-            android:fontFamily="@font/poppins_bold"
+            android:fontFamily="@font/poppins_semi_bold"
             android:background="@drawable/server_response"
             android:layout_marginTop="20dp"
             android:drawableLeft="@drawable/alert"
@@ -59,7 +59,7 @@
                 android:id="@+id/full_name_input"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
+                android:inputType="textPersonName"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,22 +101,32 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/referral_input_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Referral Code"
+            android:layout_marginTop="5dp"
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/password_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/referral_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:visibility="gone"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
         <CheckBox
             android:id="@+id/referral_checkbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="I have a referral code"
-            app:layout_constraintTop_toBottomOf="@id/password_input_layout"
+            app:layout_constraintTop_toBottomOf="@id/referral_input_layout"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/referral_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter Referral Code"
-            android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/referral_checkbox" />
-
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/signup_button"
@@ -128,25 +138,30 @@
             app:layout_constraintTop_toBottomOf="@id/referral_checkbox" />
 
 
-            <TextView
-                android:id="@+id/already_have_account_text"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have account?"
                 android:layout_marginTop="20dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/signup_button"/>
+                app:layout_constraintTop_toBottomOf="@id/signup_button"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
 
-            <TextView
-                android:id="@+id/login_link"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="@string/login"
-                android:textStyle="bold"
-                app:layout_constraintStart_toEndOf="@id/already_have_account_text"
-                app:layout_constraintTop_toTopOf="@id/already_have_account_text" />
+                <TextView
+                    android:id="@+id/already_have_account_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Already have account?" />
+
+                <TextView
+                    android:id="@+id/login_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="@string/login"
+                    style="@style/link"
+                    app:layout_constraintStart_toEndOf="@id/already_have_account_text" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

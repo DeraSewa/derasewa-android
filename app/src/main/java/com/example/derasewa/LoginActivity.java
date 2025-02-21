@@ -40,6 +40,12 @@ public class LoginActivity extends AppCompatActivity {
         TextInputEditText passwordInput = findViewById(R.id.password_input);
         MaterialButton loginButton = findViewById(R.id.login_button);
         TextView signUpLink = findViewById(R.id.signup_link);
+        TextView forgotPasswordLink = findViewById(R.id.forgot_password_link);
+
+        forgotPasswordLink.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+            startActivity(intent);
+        });
 
         loginButton.setOnClickListener(v -> {
             String emailValue = emailInput.getText().toString();
@@ -51,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
         signUpLink.setOnClickListener(v -> {
             Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
             startActivity(intent);
-            finish();
         });
     }
 
@@ -88,11 +93,14 @@ public class LoginActivity extends AppCompatActivity {
 
                 runOnUiThread(() -> {
                     if ("success".equals(type)) {
+                        String jwtToken = jsonResponse.get("payload").getAsString();
+
                         // Save user login state
                         SharedPreferences sharedPreferences = getSharedPreferences("user_preferences", MODE_PRIVATE);
                         SharedPreferences.Editor editor = sharedPreferences.edit();
                         editor.putBoolean("isLoggedIn", true);
                         editor.putBoolean("isFirstTime", false);
+                        editor.putString("jwtToken", jwtToken);
                         editor.apply();
 
                         // Show success message as Toast

@@ -25,15 +25,10 @@ import okhttp3.Response;
 import java.io.IOException;
 
 public class LoginActivity extends AppCompatActivity {
-
-    private static final String BASE_URL = "https://your-api-url.com"; // Change this to your API URL
     private final OkHttpClient client = new OkHttpClient();
     private final Gson gson = new Gson();
 
     TextView serverResponse;
-    TextInputEditText emailInput;
-    TextInputEditText passwordInput;
-    MaterialButton loginButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,22 +36,29 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         serverResponse = findViewById(R.id.server_response);
-        emailInput = findViewById(R.id.email_input);
-        passwordInput = findViewById(R.id.password_input);
-        loginButton = findViewById(R.id.login_button);
+        TextInputEditText emailInput = findViewById(R.id.email_input);
+        TextInputEditText passwordInput = findViewById(R.id.password_input);
+        MaterialButton loginButton = findViewById(R.id.login_button);
+        TextView signUpLink = findViewById(R.id.signup_link);
 
         loginButton.setOnClickListener(v -> {
             String emailValue = emailInput.getText().toString();
             String passwordValue = passwordInput.getText().toString();
 
-            login(emailValue, passwordValue);
+            loginRequest(emailValue, passwordValue);
+        });
+
+        signUpLink.setOnClickListener(v -> {
+            Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
 
-    private void login(String emailValue, String passwordValue) {
+    private void loginRequest(String email, String password) {
         JsonObject jsonBody = new JsonObject();
-        jsonBody.addProperty("email", emailValue);
-        jsonBody.addProperty("password", passwordValue);
+        jsonBody.addProperty("email", email);
+        jsonBody.addProperty("password", password);
 
         // Create request body
         RequestBody body = RequestBody.create(jsonBody.toString(), MediaType.get("application/json; charset=utf-8"));

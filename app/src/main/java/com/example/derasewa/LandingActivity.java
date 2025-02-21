@@ -3,6 +3,7 @@ package com.example.derasewa;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,8 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.google.android.material.button.MaterialButton;
 
 public class LandingActivity extends AppCompatActivity {
-    MaterialButton loginButton;
-    MaterialButton signupButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +26,8 @@ public class LandingActivity extends AppCompatActivity {
             return insets;
         });
 
-        loginButton = findViewById(R.id.login_button);
-        signupButton = findViewById(R.id.signup_button);
+        MaterialButton loginButton = findViewById(R.id.login_button);
+        MaterialButton signupButton = findViewById(R.id.signup_button);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override

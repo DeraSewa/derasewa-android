@@ -40,51 +40,59 @@
             android:fontFamily="@font/poppins_bold"
             android:background="@drawable/server_response"
             android:layout_marginTop="20dp"
+            android:drawableLeft="@drawable/alert"
+            android:drawablePadding="10dp"
             android:visibility="gone"
             app:layout_constraintTop_toBottomOf="@id/login_text" />
 
-        <TextView
-            android:id="@+id/email_address_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="Email Address"
-            app:layout_constraintTop_toBottomOf="@id/server_response" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/email_input"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/email_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/border_input"
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black"
+            android:layout_marginTop="10dp"
             android:hint="Email"
-            app:layout_constraintTop_toBottomOf="@id/email_address_text" />
+            app:layout_constraintTop_toBottomOf="@id/server_response">
 
-        <TextView
-            android:id="@+id/password_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:text="Password"
-            app:layout_constraintTop_toBottomOf="@id/email_input" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/email_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/password_input"
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password_input_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:background="@drawable/border_input"
             android:hint="Password"
-            app:layout_constraintTop_toBottomOf="@id/password_text" />
+            android:layout_marginTop="5dp"
+            app:endIconMode="password_toggle"
+            app:boxStrokeColor="@color/black"
+            app:hintTextColor="@color/black"
+            app:layout_constraintTop_toBottomOf="@id/email_input_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/password_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/forgot_password_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:text="@string/forgot_password"
             android:textAlignment="textEnd"
             android:textStyle="bold"
-            app:layout_constraintTop_toBottomOf="@id/password_input" />
+            app:layout_constraintTop_toBottomOf="@id/password_input_layout" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/login_button"
@@ -135,16 +143,30 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/continue_with_google_button"
-            style="@style/secondaryButton"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/continue_with_google_wrapper"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Continue with Google"
-            android:drawableLeft="@drawable/google_logo"
-            android:drawablePadding="50dp"
-            app:layout_constraintTop_toBottomOf="@id/or_wrapper" />
+            app:layout_constraintTop_toBottomOf="@id/or_wrapper"
+            >
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/continue_with_google_button"
+                style="@style/secondaryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Continue with Google"
+                android:drawableLeft="@drawable/google_logo"
+                android:textStyle="bold"
+                android:drawablePadding="50dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                 />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="wrap_content"
@@ -152,7 +174,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/continue_with_google_button">
+            app:layout_constraintTop_toBottomOf="@id/continue_with_google_wrapper">
 
             <TextView
                 android:id="@+id/do_not_have_account_text"

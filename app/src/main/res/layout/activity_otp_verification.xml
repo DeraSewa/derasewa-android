@@ -66,10 +66,15 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:textSize="20sp"
+                android:focusable="true"
+                android:focusableInTouchMode="true"
+                android:clickable="true"
+                android:enabled="true"
                 app:itemCount="6"
                 app:itemHeight="50dp"
-                app:itemSpacing="10dp"
                 app:itemWidth="50dp"
+                app:itemRadius="10dp"
+                app:itemSpacing="5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -28,4 +28,3 @@ This repository contains the main android application code of the DeraSewa, deve
 <p align="center">
   &copy; 2024 - Present <a href="https://derasewa.com" target="_blank">DeraSewa</a>
 </p>
-

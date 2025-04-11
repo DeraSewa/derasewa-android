@@ -13,8 +13,6 @@ This repository contains the main android application code of the DeraSewa, deve
 - Android Studio
 - Java Development Kit (JDK SE 23)
 
-## Getting Started
-
 ### Installation
 1. Clone the repository:
    ```sh
